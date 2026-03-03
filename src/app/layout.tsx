@@ -4,6 +4,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/web/theme-provider';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Toaster } from 'sonner';
+import Providers from './providers';
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -37,7 +38,7 @@ export default function RootLayout({
 						enableSystem
 						disableTransitionOnChange
 					>
-						{children}
+						<Providers>{children}</Providers>
 						<Toaster richColors position="bottom-right" />
 					</ThemeProvider>
 				</body>

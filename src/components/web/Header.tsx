@@ -13,7 +13,7 @@ import {
 } from '@clerk/nextjs';
 
 const NAV_ITEMS = [
-	{ label: 'Features', href: '#' },
+	{ label: 'Dashboard', href: '/projects' },
 	{ label: 'Why Aesthetify', href: '#' },
 	{ label: 'Stories', href: '#' },
 	{ label: 'Pricing', href: '#' },
