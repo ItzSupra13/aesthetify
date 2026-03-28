@@ -4,9 +4,6 @@ import { Suggestion, Suggestions } from '@/components/ai-elements/suggestion';
 import { suggestions } from '@/lib/constants';
 import { Badge } from '@/components/ui/badge';
 import AiInput from './AiInput';
-import { PreviewMock } from './PreviewMock';
-import { PricingSection } from './PricingSection';
-import { Footer } from './Footer';
 import { BadgeCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
@@ -67,10 +64,10 @@ export function Hero() {
 					</div>
 
 					{/* Preview */}
-					<PreviewMock />
+					{/* <PreviewMock /> */}
 
 					{/* Trusted */}
-					<div className="mt-20 md:mt-32 pb-16 md:pb-24">
+					{/* <div className="mt-20 md:mt-32 pb-16 md:pb-24">
 						<p className="text-[10px] font-bold uppercase tracking-[0.5em] text-slate-600 mb-12">
 							Trusted by the creators of tomorrow
 						</p>
@@ -85,16 +82,16 @@ export function Hero() {
 								</div>
 							))}
 						</div>
-					</div>
+					</div> */}
 				</div>
 
 				{/* Bottom Fade */}
 				<div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#030712] to-transparent" />
 			</section>
 
-			<PricingSection />
+			{/* <PricingSection /> */}
 
-			<section className="relative bg-astral-deep py-32 border-t border-white/5 overflow-hidden">
+			{/* <section className="relative bg-astral-deep py-32 border-t border-white/5 overflow-hidden">
 				<div className="max-w-4xl mx-auto px-6 text-center">
 					<h2 className="text-4xl font-thin tracking-tight text-white mb-6">
 						Have a custom request?
@@ -109,9 +106,9 @@ export function Hero() {
 						Contact Our Team
 					</Button>
 				</div>
-			</section>
+			</section> */}
 
-			<Footer />
+			{/* <Footer /> */}
 		</>
 	);
 }

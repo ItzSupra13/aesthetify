@@ -7,6 +7,7 @@ import { Modelitem } from './ModelItem';
 import { useAuth } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import 'dotenv/config'
 
 export default function AiInput({
 	promptText,
@@ -26,7 +27,7 @@ export default function AiInput({
 		setLoading(true);
 
 		const token = await getToken({ skipCache: true });
-		// console.log('SENDING SENDING SENDING');
+		console.log('SENDING SENDING SENDING');
 		try {
 			console.log(process.env.NEXT_PUBLIC_API_URL);
 			const { data } = await axios.post(
@@ -41,7 +42,7 @@ export default function AiInput({
 
 			router.push(`/projects/${data.id}`);
 		} catch (err) {
-			console.error(err);
+			console.error("ERROR IN AI INPUT ",err);
 		} finally {
 			setLoading(false);
 		}

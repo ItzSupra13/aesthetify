@@ -1,9 +1,9 @@
-import { openrouter } from "./openrouter"
-import { streamText } from "ai"
+import { google } from "@/server/google";
+import { generateText } from "ai";
 
 type GenerateProjectNameInput = {
-  description: string
-}
+  description: string;
+};
 
 export async function generateProjectName({
   description,
@@ -23,16 +23,25 @@ Project description:
 ${description}
 
 Return ONLY the name.
-`
+`;
 
-  const response = streamText({
-    model: openrouter("google/gemini-2.5-flash"),
-    temperature: 0.9,
-    maxOutputTokens: 50,
-    prompt,
-  })
+  try {
+    console.log("INSIDE GENERATION");
+    console.log("USING API KEY: ", process.env.GEMINI_API_KEY ? "EXISTS" : "MISSING");
 
-  await response.consumeStream()
+    const { text } = await generateText({
+      model: google("gemini-2.5-flash"),
+      prompt, 
+      temperature: 0.9,
+      maxOutputTokens: 50,
+    });
 
-  return response.text || "Undefined Name"
+    console.log("GOT OUTPUT: ", text);
+
+    return text.trim() || "Undefined Project";
+
+  } catch (error) {
+    console.error("GENERATE_PROJECT_NAME_ERROR:", error);
+    return "Project Alpha"; 
+  }
 }

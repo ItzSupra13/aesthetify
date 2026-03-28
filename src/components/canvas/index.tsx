@@ -198,9 +198,9 @@ const Canvas = ({
 
 </div>
 `;
-    const onOpenHtmlDialog = () => {
-        setOpenHtmlDialog(true);
-    }
+	const onOpenHtmlDialog = () => {
+		setOpenHtmlDialog(true);
+	};
 	return (
 		<>
 			<div className="relative w-full h-full overflow-hidden">
@@ -255,45 +255,47 @@ const Canvas = ({
 									<div>
 										{frames.length === 0 && (
 											<DeviceFrame
-                                                key="demo"
-                                                frameId="demo-frame"
-                                                title="Demo"
-                                                initialPosition={{ x: 100, y: 100 }}
-                                                toolMode={toolMode}
-                                                themeStyle={theme?.style}
-                                                html={DEMO_HTML}
-                                                scale={currentScale}
-                                                onOpenHtmlDialog={onOpenHtmlDialog}
+												key="demo"
+												frameId="demo-frame"
+												title="Demo"
+												initialPosition={{ x: 100, y: 100 }}
+												toolMode={toolMode}
+												themeStyle={theme?.style}
+												html={DEMO_HTML}
+												scale={currentScale}
+												onOpenHtmlDialog={onOpenHtmlDialog}
 											/>
 										)}
 
-										{frames.map((frame, index: number) => {
+										{frames.map((frame, index) => {
 											const baseX = 100 + index * 480;
 											const y = 100;
+
 											if (frame.isLoading) {
 												return (
 													<DeviceFrameSkeleton
-														key={index}
+														key={frame.id}
 														style={{
-															transform: `translae(${baseX}px 100px)`,
+															transform: `translate(${baseX}px, ${y}px)`,
 														}}
 													/>
 												);
 											}
+
 											return (
 												<DeviceFrame
-													key={1}
-													frameId={'something'}
-													title={'some Thing'}
+													key={frame.id}
+													frameId={frame.id}
+													title={frame.title}
 													initialPosition={{
 														x: baseX,
 														y,
 													}}
 													toolMode={toolMode}
 													themeStyle={theme?.style}
-													html={DEMO_HTML}
-                                                    scale={currentScale}
-                                                    onOpenHtmlDialog={onOpenHtmlDialog}
+													html={frame.htmlContent}
+													scale={currentScale}
+													onOpenHtmlDialog={onOpenHtmlDialog}
 												/>
 											);
 										})}
@@ -312,12 +314,12 @@ const Canvas = ({
 					)}
 				</TransformWrapper>
 			</div>
-            <HtmlDialog
-                html={selectedFrame?.htmlContent || ""}
-                themeStyle={theme?.style || ""}
-                open={openHtmlDialog}
-                onOpenChange={setOpenHtmlDialog}
-            />
+			<HtmlDialog
+				html={selectedFrame?.htmlContent || ''}
+				themeStyle={theme?.style || ''}
+				open={openHtmlDialog}
+				onOpenChange={setOpenHtmlDialog}
+			/>
 		</>
 	);
 };
